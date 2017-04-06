@@ -8,6 +8,19 @@
 
         <?php session_start(); ?>
 
+		<form name='back' id='back' action='fleet.php' method='post'>
+        	<input type='submit' id='back' name='back' value='Admin Panel' />
+        </form>
+
+        <?php
+        	if (isset($_POST['back'])) {
+        		header("Location: admin.php");
+                die();
+        	}
+        ?>
+
+        <h2>Manage Fleet</h2>
+
         <form name='addcar' id='addcar' action='fleet.php' method='post'>
         	<input type='submit' id='addcar' name='addcar' value='Add New Car' />
         </form>
@@ -18,8 +31,7 @@
                 die();
         	}
         ?>
-
-        <h2>Manage Fleet</h2>
+        <br>
 
         <form name='filter' id='filter' action='fleet.php' method='post'>
         	<input type='submit' id='all' name='all' value='View' /> <u>all cars</u><br>
