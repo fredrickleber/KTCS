@@ -5,15 +5,19 @@
     </head>
 <body>
 
-<center>
-    <h1>
-        K-Town Car Share<br>
-    </h1>
-    <h2>
-        View Members
-    </h2>
-</center>
+<form name='back' id='back' action='fleet.php' method='post'>
+    <input type='submit' id='back' name='back' value='Admin Panel' />
+</form>
+<?php
+    if (isset($_POST['back'])) {
+        header("Location: admin.php");
+        die();
+    }
+?>
 
+<h2>
+    View Members
+</h2>
 
 <?php
  //Create a user session or resume an existing one
@@ -26,8 +30,6 @@
 	die();
  }
 ?>
-
-<a href="profile.php">Back to Profile.</a><br/>
 
 <?php
     // fetch members
@@ -50,4 +52,3 @@ else {
 
 </body>
 </html>
-

@@ -5,19 +5,22 @@
     </head>
 <body>
 
-<center>
-    <h1>
-        K-Town Car Share<br>
-    </h1>
-    <h2>
-        Invoice Sent
-    </h2>
-</center>
+<form name='back' id='back' action='fleet.php' method='post'>
+    <input type='submit' id='back' name='back' value='Admin Panel' />
+</form>
 
-        <h3>An invoice for $<?php echo $_GET['fee']; ?> has successfully been emailed to <?php echo $_GET['email']; ?>.</h3>
+<?php
+    if (isset($_POST['back'])) {
+        header("Location: admin.php");
+        die();
+    }
+?>
 
-<a href="profile.php">Back to Profile.</a><br/>
+<h2>
+    Invoice Sent
+</h2>
 
-    </body>
+<h4>An invoice for $<?php echo $_GET['fee']; ?> has successfully been emailed to <?php echo $_GET['email']; ?>.</h4>
+
+</body>
 </html>
-
