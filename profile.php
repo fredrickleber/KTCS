@@ -101,22 +101,22 @@
       <div class="container text">
         <center><h3>Update Profile</h3></center>
         <hr>
-        <form action="" class="form-horizontal">
+        <form action="profile.php" name="update" class="form-horizontal">
           <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email Address</label>
             <div class="col-sm-8">
-              <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
             </div>
           </div>
           <div class="form-group">
             <label for="inputPassword" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-8">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary" id="updateBtn">Update</button>
+              <button type="submit" class="btn btn-primary" name="updateBtn" id="updateBtn">Update</button>
             </div>
           </div>
         <hr>

@@ -125,14 +125,19 @@
         // if the user currently has an active rez (car checked out)
         $result = $con->query("SELECT reservationId, vin, year, make, model FROM (Reservations NATURAL JOIN Car) WHERE active = 1 AND memberId = ".$_SESSION['memberId']);
         $myrow = $result->fetch_assoc();
-        echo "<h3>Drop off your Active Reservation: ";
-        echo $myrow['year']." ".$myrow['make']." ".$myrow['model']."</h3>";
-        $_SESSION['vin'] = $myrow['vin'];
-        $_SESSION['reservationId'] = $myrow['reservationId'];
     ?>
-    <div class="well">
-    <form name='dropoff' id='dropoff' action='pickupDropoff.php' method='post'>
-        <table border='0'>
+    <div class="container-fluid">
+    <hr>
+    <hr>
+    <h4><center>Drop off your:
+    <?php
+      echo $myrow['year']." ".$myrow['make']." ".$myrow['model']."</h3>";
+      $_SESSION['vin'] = $myrow['vin'];
+      $_SESSION['reservationId'] = $myrow['reservationId'];
+    ?>
+    </center></h4>
+    <form class = "form-horizontal" name='dropoff' id='dropoff' action='pickupDropoff.php' method='post'>
+        <table class='table table-striped'>
             <tr>
                 <td>Date (YYYY-MM-DD)</td>
                 <td><input type='date' name='date' id='date' /></td>
@@ -146,15 +151,28 @@
                 <td><input type='text' name='status' id='status' /></td>
             </tr>
             <tr>
-                <td><h4>Optional fields:</h4></td>
-            </tr>
-            <tr>
                 <td>Rating</td>
                 <td>
-      <input type="radio" name="rating" value=1> ★<br>
-      <input type="radio" name="rating" value=2> ★★<br>
-      <input type="radio" name="rating" value=3> ★★★<br>
-      <input type="radio" name="rating" value=4> ★★★★ 
+            <div class="radio">
+              <label>
+                <input type="radio" name="rating" value=1> ★
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="rating" value=2> ★★
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="rating" value=3> ★★★
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="rating" value=4> ★★★★
+              </label>
+            </div>
                 </td>
             </tr>
             <tr>
@@ -163,12 +181,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type='submit' id='dropoffBtn' name='dropoffBtn' value='Drop Off' /> 
+                    <input type='submit' class = "btn btn-primary" id='dropoffBtn' name='dropoffBtn' value='Drop Off' /> 
                 </td>        
             </tr>
         </table>
     </form>
-    </div>
+    </div><!-- end well-->
 
     <?php
     }
@@ -179,8 +197,9 @@
         $myrow = $result->fetch_assoc();
         $_SESSION['reservationId'] = $myrow['reservationId'];
     ?>
-    <form name='pickup' id='pickup' action='pickupDropoff.php' method='post'>
-        <table border='0'>
+    <form class="form-horizontal" name='pickup' id='pickup' action='pickupDropoff.php' method='post'>
+        <h3>Cars availible for pickup:</h3>
+        <table class = "table table-striped" border='0'>
             <tr>
                 <td><?php echo $myrow['year']." ".$myrow['make']." ".$myrow['model'] ?></td>
                 <td><input type='submit' id='pickupBtn' name='pickupBtn' value='Pick Up' /> </td>
