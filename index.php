@@ -244,7 +244,7 @@
   	<div class="jumbotron">
   		<div class="container text-center">
         <h1> K-Town Car Share</h1>
-        <p> Get the ride the you want, when you want</p>
+        <p> Get the ride you want, when you want</p>
 
         <div class="btn-group">
           <a href="#register" class="btn btn-lg btn-primary"> Register </a>
