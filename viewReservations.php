@@ -1,19 +1,21 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>KTCS: View Reservations</title>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>K-Town Car Share</title>
+    <meta name="description" content="KTCS App">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+/* Add CSS here */
+</style>
+
+
 <body>
-
-<center>
-    <h1>
-        K-Town Car Share<br>
-    </h1>
-    <h2>
-        View Reservations
-    </h2>
-</center>
-
 
 <?php
  //Create a user session or resume an existing one
@@ -25,6 +27,22 @@
 	header("Location: index.php");
 	die();
  }
+?>
+
+<?php
+if(isset($_SESSION['memberId'])){
+  include_once 'config/connection.php'; 
+  $query = "SELECT name FROM Member WHERE memberId=?";
+  $stmt = $con->prepare($query);
+  $stmt->bind_Param("s", $_SESSION['memberId']);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $data = $result->fetch_assoc();
+} else {
+  //User is not logged in. Redirect the browser to the login index.php page and kill this page.
+  header("Location: index.php");
+  die();
+}
 ?>
 
 <form name='viewRez' id='viewRez' action='viewReservations.php' method='post'>
