@@ -47,6 +47,11 @@
                 if ($vin == '' || $make == '' || $model == '' || $year == '' || $odometer == '' || $parkedAddress == '' || $dailyFee == '') {
                     echo "<script>alert('You must fill in all fields.');</script>";
                 } else {
+                    $location_query = "INSERT INTO parkinglocations VALUES (?, 10);";
+                    $location_stmt = $con->prepare($location_query);
+                    $location_stmt->bind_param('s', $parkedAddress);
+                    $location_stmt->execute();
+
                     $query = "INSERT INTO car VALUES (?, ?, ?, ?, ?, ?, ?);";
                     $stmt = $con->prepare($query);  
                     $stmt->bind_param('sssiisi', $vin, $make, $model, $year, $odometer, $parkedAddress, $dailyFee);
