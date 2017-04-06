@@ -19,6 +19,10 @@
 
   <?php
     if(isset($_SESSION['memberId'])){
+      if($_SESSION['memberId'] == 1) {
+        header("Location: admin.php");
+        die();
+      } else {
       include_once 'config/connection.php'; 
       $query = "SELECT name FROM Member WHERE memberId=?";
       $stmt = $con->prepare($query);
@@ -26,6 +30,7 @@
       $stmt->execute();
       $result = $stmt->get_result();
       $data = $result->fetch_assoc();
+      }
     } else {
       //User is not logged in. Redirect the browser to the login index.php page and kill this page.
       header("Location: index.php");

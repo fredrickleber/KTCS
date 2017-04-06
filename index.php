@@ -66,7 +66,10 @@
   <?php
   //check if the user is already logged in and has an active session
     if(isset($_SESSION['memberId'])){
-    header("Location: reserve.php");
+      if($_SESSION['memberId'] == 1)
+        header("Location: admin.php");
+      else
+        header("Location: reserve.php");
     die();
     }
   ?>
@@ -101,10 +104,12 @@
                     //Create a session variable that holds the user's id
                     $_SESSION['memberId'] = $myrow['memberId'];
                     //Redirect the browser to the profile editing page and kill this page.
-                      $stmt->close();
-                    header("Location: reserve.php");
+                    $stmt->close();
+                    if($myrow['memberId'] == 1)
+                      header("Location: admin.php");
+                    else
+                      header("Location: reserve.php");
                     die();
-
                   }
                   else {
                       echo "Critical error!";
@@ -157,7 +162,10 @@
         //Create a session variable that holds the user's id
         $_SESSION['memberId'] = $myrow['memberId'];
         //Redirect the browser to the profile editing page and kill this page.
-        header("Location: reserve.php");
+        if($myrow['memberId'] == 1)
+          header("Location: admin.php");
+        else
+          header("Location: reserve.php");
         die();
       } else {
         //If the username/password doesn't match a user in our database
