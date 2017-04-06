@@ -72,11 +72,10 @@
 
                     if ($already_reserved == false) {
                         $_SESSION['access_code'] = generateRandomString();
-                        $reservation_id = $reservations_result->count;
 
-                        $reserve_query = "INSERT INTO reservations VALUES (?, ?, ?, ?, ?, ?, 0);";
+                        $reserve_query = "INSERT INTO Reservations VALUES (null, ?, ?, ?, ?, ?, 0)";
                         $reserve_stmt = $con->prepare($reserve_query);  
-                        $reserve_stmt->bind_param('isissi', $reservation_id, $_SESSION['query_date'], $_SESSION['memberId'], $vin, $_SESSION['access_code'], $_POST['days']);
+                        $reserve_stmt->bind_param('sissi', $_SESSION['query_date'], $_SESSION['memberId'], $vin, $_SESSION['access_code'], $_POST['days']);
                         $reserve_stmt->execute();
 
                         header("Location: confirmation.php");
